@@ -17,7 +17,7 @@ public class UserServices {
     @Autowired
     private TaskRepository taskRepository;
 
-    public User findById(Long Id){
+    public User findById(Long id){
         Optional<User> user = this.userRepository.findById(id);
         return user.orElseThrow(()->new RuntimeException(
                 "Usuário não encontrado! Id:  " + id + ", Tipo: " + User.class.getName()
