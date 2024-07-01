@@ -32,14 +32,14 @@ public class UserController {
                 .path("/id").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-    @PutMapping("/(id)")
+    @PutMapping("/{id}")
     @Validated(User.UpdateUser.class)
     public ResponseEntity<Void> update(@Valid @RequestBody User obj, @PathVariable Long id){
         obj.setId(id);
         this.userServices.update(obj);
         return ResponseEntity.noContent().build();
     }
-    @DeleteMapping("/(id)")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         this.userServices.delete(id);
         return ResponseEntity.noContent().build();

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.Descriptor;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,13 @@ public class TaskServices {
                 "Tarefa não encontrada! Id:" + id + ", Tipo: " + Task.class.getName()
         ));
     }
+
+    public List<Task> findByAllUserId(Long userId){
+        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
+    }
+
+
     @Transactional
     public Task create(Task obj){
         User user = this.userServices.findById(obj.getUser().getId());
